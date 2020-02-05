@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/users", produces = "application/hal+json", consumes = "application/json")
@@ -19,6 +20,10 @@ public class UserController {
     @Autowired
     private JwtService jwtService;
 
+
+    /*
+     *
+     */
     @GetMapping(path = "/{id}")
     public ResponseEntity<User> getById(@PathVariable String id) {
         User user = userService.getById(Integer.parseInt(id));
@@ -45,8 +50,8 @@ public class UserController {
     }
 
     @GetMapping(path = "/{id}/qrcodes")
-    public ResponseEntity<ArrayList<Qrcode>> getAllQrCodesOfUser(@PathVariable String id) {
-        ArrayList<Qrcode> qrcodes = userService.getAllQrCodesOfUser(Integer.parseInt(id));
+    public ResponseEntity<List<Qrcode>> getAllQrCodesOfUser(@PathVariable String id) {
+        List<Qrcode> qrcodes = userService.getAllQrCodesOfUser(Integer.parseInt(id));
 
         if (qrcodes.size() >= 1) {
             return ResponseEntity.ok(qrcodes);

@@ -2,18 +2,26 @@ package fr.epsi.b3.gostyle.model;
 
 import org.springframework.hateoas.RepresentationModel;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "utilisateur")
 public class User extends RepresentationModel<User> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nom;
     private String prenom;
     private int numero;
     private String passwd;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "used_code",
+            joinColumns = @JoinColumn(name = "Utilisateurid"),
+            inverseJoinColumns = @JoinColumn(name = "QRCodeID"))
+    private List<Qrcode> qrcodes;
 
     public int getId() {
         return id;
@@ -53,5 +61,13 @@ public class User extends RepresentationModel<User> {
 
     public void setPasswd(String psswd) {
         this.passwd = psswd;
+    }
+
+    public List<Qrcode> getQrcodes() {
+        return qrcodes;
+    }
+
+    public void setQrcodes(List<Qrcode> qrcodes) {
+        this.qrcodes = qrcodes;
     }
 }

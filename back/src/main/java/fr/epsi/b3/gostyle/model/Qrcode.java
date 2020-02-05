@@ -1,9 +1,7 @@
 package fr.epsi.b3.gostyle.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "QRCode")
 public class Qrcode {
@@ -12,6 +10,12 @@ public class Qrcode {
 	private int ID;
 	private String libelle;
 	private int montant;
+
+/*	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "used_code",
+			joinColumns = @JoinColumn(name = "QRCodeID"),
+			inverseJoinColumns = @JoinColumn(name = "Utilisateurid"))
+	private List<User> users;*/
 	
 	public String getLibelle() {
 		return libelle;
@@ -28,4 +32,12 @@ public class Qrcode {
 	public int getID() {
 		return ID;
 	}
+
+/*	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}*/
 }

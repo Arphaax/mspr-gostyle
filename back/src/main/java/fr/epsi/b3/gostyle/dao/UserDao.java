@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UserDao {
@@ -31,8 +32,8 @@ public class UserDao {
     }
 
     @Transactional(readOnly = true)
-    public ArrayList<Qrcode> getAllQrCodesOfUser(int id) {
+    public List<Qrcode> getAllQrCodesOfUser(int id) {
         ArrayList<Qrcode> qrcodes = new ArrayList<>();
-        return qrcodes;
+        return getById(id).getQrcodes();
     }
 }
