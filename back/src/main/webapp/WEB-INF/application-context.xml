@@ -29,5 +29,4 @@
 		<property name="persistenceUnitName" value="accesdb" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
 </beans>
