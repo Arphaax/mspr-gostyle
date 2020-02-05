@@ -2,21 +2,21 @@ package fr.epsi.b3.gostyle.dao;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
-import fr.epsi.b3.gostyle.modele.User;
+import fr.epsi.b3.gostyle.model.User;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 public class UserDaoTest {
-    UserDao userDao;
-
-    @PersistenceContext
-    EntityManager em;
+    private UserDao userDao;
+    private EntityManager mockedEm;
 
     @Before
     public void init() {
+        this.mockedEm = mock(EntityManager.class);
         this.userDao = new UserDao();
     }
 
@@ -28,7 +28,7 @@ public class UserDaoTest {
         user.setNumero(0670707070);
 
         int id = 1;
-        when(em.find(User.class, id)).thenReturn(user);
+        when(mockedEm.find(User.class, id)).thenReturn(user);
 
         User result = userDao.getById(id);
 

@@ -10,7 +10,6 @@ import fr.epsi.b3.gostyle.model.Qrcode;
 
 @Service
 public class QrcodeService {
-	
 	@Autowired
 	private QrcodeDao qrcodeDao;
 	

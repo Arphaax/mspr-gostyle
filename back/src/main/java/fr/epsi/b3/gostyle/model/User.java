@@ -1,11 +1,11 @@
-package fr.epsi.b3.gostyle.modele;
+package fr.epsi.b3.gostyle.model;
 
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "utilisateur")
 public class User extends RepresentationModel<User> {
 
     @Id
@@ -13,7 +13,7 @@ public class User extends RepresentationModel<User> {
     private String nom;
     private String prenom;
     private int numero;
-    private String psswd;
+    private String passwd;
 
     public int getId() {
         return id;
@@ -47,11 +47,11 @@ public class User extends RepresentationModel<User> {
         this.numero = numero;
     }
 
-    public String getPsswd() {
-        return psswd;
+    public String getPasswd() {
+        return passwd;
     }
 
-    public void setPsswd(String psswd) {
-        this.psswd = psswd;
+    public void setPasswd(String psswd) {
+        this.passwd = psswd;
     }
 }
