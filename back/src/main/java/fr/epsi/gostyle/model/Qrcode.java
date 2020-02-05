@@ -13,6 +13,13 @@ public class Qrcode {
 	private String libelle;
 	private int montant;
 	
+	public Qrcode(int i, String string, int j) {
+		super();
+		ID = i;
+		libelle = string;
+		montant = j;
+	}
+	
 	public String getLibelle() {
 		return libelle;
 	}
