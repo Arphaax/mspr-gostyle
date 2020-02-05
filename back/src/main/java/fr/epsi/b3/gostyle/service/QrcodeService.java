@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.epsi.gostyle.dao.QrcodeDao;
-import fr.epsi.gostyle.model.Qrcode;
-import fr.epsi.gostyle.model.exception.QrcodeNotFoundException;
+import fr.epsi.b3.gostyle.dao.QrcodeDao;
+import fr.epsi.b3.gostyle.model.Qrcode;
+import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 
 @Service
 public class QrcodeService {

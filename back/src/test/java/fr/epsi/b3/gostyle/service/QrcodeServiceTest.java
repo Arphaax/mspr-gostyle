@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import fr.epsi.gostyle.model.Qrcode;
-import fr.epsi.gostyle.model.exception.QrcodeNotFoundException;
+import fr.epsi.b3.gostyle.model.Qrcode;
+import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 
 public class QrcodeServiceTest {
 
@@ -13,11 +13,14 @@ public class QrcodeServiceTest {
 	public void recuperationDUnQrcodeParSonId() throws Exception {
 		Integer id = 1;
 		QrcodeService qrcodeService = Mockito.mock(QrcodeService.class);
-	    Mockito.when(qrcodeService.find(1)).thenReturn(new Qrcode(1,"test",15));
+		Qrcode qrcode = new Qrcode();
+		qrcode.setLibelle("test");
+		qrcode.setMontant(15);
+	    Mockito.when(qrcodeService.find(1)).thenReturn(qrcode);
 
-		Qrcode qrcode = qrcodeService.find(id);
+		Qrcode result = qrcodeService.find(id);
 
-		assertEquals(1,qrcode.getID());
+		assertEquals(1,result.getID());
 		Mockito.verify(qrcodeService).find(1);
 	}
 
