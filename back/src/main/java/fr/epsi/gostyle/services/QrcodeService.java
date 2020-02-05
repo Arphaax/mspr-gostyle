@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fr.epsi.gostyle.dao.QrcodeDao;
 import fr.epsi.gostyle.model.Qrcode;
+import fr.epsi.gostyle.model.exception.QrcodeNotFoundException;
 
 @Service
 public class QrcodeService {
@@ -15,8 +16,12 @@ public class QrcodeService {
 	private QrcodeDao qrcodeDao;
 	
 	@Transactional
-	public Qrcode find(Integer id) {
-		return qrcodeDao.findById(id);
+	public Qrcode find(Integer id) throws QrcodeNotFoundException {
+		Qrcode qrcode = qrcodeDao.findById(id);
+		if(qrcode == null) {
+			throw new QrcodeNotFoundException("Qrcode not found");
+		}
+		return qrcode;
 	}
 
 }
