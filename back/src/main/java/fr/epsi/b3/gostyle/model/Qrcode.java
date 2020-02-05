@@ -1,4 +1,4 @@
-package fr.epsi.gostyle.model;
+package fr.epsi.b3.gostyle.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

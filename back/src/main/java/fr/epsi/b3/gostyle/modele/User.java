@@ -1,4 +1,4 @@
-package fr.epsi.gostyle.modeles;
+package fr.epsi.b3.gostyle.modele;
 
 import org.springframework.hateoas.RepresentationModel;
 

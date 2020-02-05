@@ -1,4 +1,4 @@
-package fr.epsi.gostyle.services;
+package fr.epsi.b3.gostyle.service;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;

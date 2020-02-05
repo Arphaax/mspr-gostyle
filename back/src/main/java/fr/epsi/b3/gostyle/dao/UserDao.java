@@ -1,6 +1,6 @@
-package fr.epsi.gostyle.daos;
+package fr.epsi.b3.gostyle.dao;
 
-import fr.epsi.gostyle.modeles.User;
+import fr.epsi.b3.gostyle.modele.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

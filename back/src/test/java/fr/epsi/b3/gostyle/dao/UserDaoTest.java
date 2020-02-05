@@ -1,8 +1,8 @@
-package fr.epsi.gostyle.daos;
+package fr.epsi.b3.gostyle.dao;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
-import fr.epsi.gostyle.modeles.User;
+import fr.epsi.b3.gostyle.modele.User;
 import org.junit.Before;
 import org.junit.Test;
 

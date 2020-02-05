@@ -1,4 +1,4 @@
-package fr.epsi.gostyle.services;
+package fr.epsi.b3.gostyle.service;
 
 public class UserServiceTest {
 

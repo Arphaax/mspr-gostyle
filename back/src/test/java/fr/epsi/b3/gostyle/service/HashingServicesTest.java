@@ -1,12 +1,9 @@
-package fr.epsi.gostyle.services;
+package fr.epsi.b3.gostyle.service;
 
-import de.mkammerer.argon2.Argon2;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 public class HashingServicesTest {
     HashingServices hashingServices;

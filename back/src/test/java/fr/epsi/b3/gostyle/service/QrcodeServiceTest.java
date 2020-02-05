@@ -1,9 +1,9 @@
-package fr.epsi.gostyle.services;
+package fr.epsi.b3.gostyle.service;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import fr.epsi.gostyle.model.Qrcode;
+import fr.epsi.b3.gostyle.model.Qrcode;
 
 public class QrcodeServiceTest {
     QrcodeService qrcodeService;
