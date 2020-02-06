@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,11 +12,10 @@
     </data>
 
 <RelativeLayout
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/frame_2"
-    tools:context=".views.MainActivity">
+    bind:context=".views.MainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -74,6 +74,8 @@
             android:textColor="#FA070707"
             android:textSize="18sp" />
 
+
+
         <EditText
             android:id="@+id/editText4"
             android:layout_width="335dp"
@@ -83,7 +85,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
-            android:inputType="textPassword"
+            android:inputType="textPersonName"
             android:background="@color/loginColor"
             android:padding="10dp"
             android:text="@={userViewModel.userPassword}"/>
@@ -101,7 +103,9 @@
         android:text="connexion"
         android:textColor="#FA070707"
         android:textSize="18sp"
-        android:background="@drawable/button_color"/>
+        android:background="@drawable/button_color"
+        android:onClick="@{ ()-> userViewModel.onClicked() }"
+        bind:toastMessage="@{userViewModel.toastMessage}"/>
 
 
 </RelativeLayout>
