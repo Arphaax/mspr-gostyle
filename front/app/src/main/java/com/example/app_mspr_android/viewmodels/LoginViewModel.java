@@ -6,8 +6,8 @@ import android.util.Patterns;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
-import com.example.app_mspr_android.BR;
-import com.example.app_mspr_android.BR.*;
+import com.example.app_mspr_android.Interface.APIInterface;
+import com.example.app_mspr_android.Service.APIService;
 import com.example.app_mspr_android.model.UserModel;
 
 
@@ -15,25 +15,33 @@ import com.example.app_mspr_android.model.UserModel;
 
 public class LoginViewModel extends BaseObservable {
 
+    public static final String SUCCESS = "SUCCESS_CONNEXION";
+
     private UserModel userModel;
+    private APIInterface apiInterface;
 
     @Bindable
-    private String toastMessage = null;
-    private String success = "you're in Mspr GoStyle";
+    private String message;
+
+    public LoginViewModel() {
+
+        userModel = new UserModel();
+
+        apiInterface = APIService.getRetrofitInstance().create(APIInterface.class);
+
+    }
 
     @Bindable
-    public String getToastMessage() {
-        return toastMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setToastMessage(String toastMessage) {
-        this.toastMessage = toastMessage;
-        notifyPropertyChanged(com.example.app_mspr_android.BR.toastMessage);
+    public void setMessage(String Message) {
+        this.message = Message;
+        notifyPropertyChanged(com.example.app_mspr_android.BR.message);
     }
 
-    public LoginViewModel(){
-        userModel= new UserModel();
-    }
+
 
     @Bindable
     public String getUserEmail(){
@@ -60,6 +68,6 @@ public class LoginViewModel extends BaseObservable {
     }
 
     public void onClicked() {
-        setToastMessage(success);
+        setMessage(SUCCESS);
     }
 }
