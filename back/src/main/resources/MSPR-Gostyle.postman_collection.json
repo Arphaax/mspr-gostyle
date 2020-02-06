@@ -1,0 +1,321 @@
+{
+	"info": {
+		"_postman_id": "7ac70245-8d28-4e67-88e7-8b55a000b946",
+		"name": "MSPR-Gostyle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User getById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8394af07-7875-4f09-b421-bab75dfe1eb0",
+						"exec": [
+							"pm.test(\"Status should be 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body is JSON data\", function() {",
+							"   pm.response.to.have.jsonBody('nom')",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User getById with wrong id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8394af07-7875-4f09-b421-bab75dfe1eb0",
+						"exec": [
+							"pm.test(\"Status should be 404\", function() {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Body should contain error message\", function() {",
+							"    pm.response.to.have.jsonBody('Erreur')",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/users/160",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"160"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User getQrCodes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e681a7a-b099-47fa-9c65-658ca55867d9",
+						"exec": [
+							"pm.test(\"Status should be 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body is JSON data\", function() {",
+							"   pm.response.to.have.jsonBody('montant')",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/users/1/qrcodes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"1",
+						"qrcodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QrCode getById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a880d065-c515-4ad0-ad33-549809c5c962",
+						"exec": [
+							"pm.test(\"Status should be 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body is JSON data\", function() {",
+							"   pm.response.to.have.jsonBody('montant')",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/qrcodes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"qrcodes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QrCode getById Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a880d065-c515-4ad0-ad33-549809c5c962",
+						"exec": [
+							"pm.test(\"Status should be 404\", function() {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/qrcodes/160",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"qrcodes",
+						"160"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b39a770-f5ae-4b3e-9d18-f666d7fe8785",
+						"exec": [
+							"pm.test(\"Status should be 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body is JSON data\", function() {",
+							"   pm.response.to.have.jsonBody('nom')",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numero\": \"\",\n\t\"passwd\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "b68f8a01-f959-4024-8b9a-aea6b195119a",
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"id": "ec4940aa-9d87-46d6-9e5c-59516ae8f8ea",
+			"key": "qrCodeId1",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"id": "d25569eb-aecd-46a6-b6f0-8c8d419b9eb6",
+			"key": "qrCodeId2",
+			"value": "2",
+			"type": "string"
+		},
+		{
+			"id": "f2c96f6a-995d-42c4-9125-fe54fc6ed29d",
+			"key": "wrongUser",
+			"value": "160",
+			"type": "string"
+		},
+		{
+			"id": "81f0db73-5783-43d8-8ea5-e924747591b8",
+			"key": "wrongQrCode",
+			"value": "160",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
