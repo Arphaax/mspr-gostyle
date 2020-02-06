@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "utilisateur")
+@Entity(name = "Utilisateur")
 public class User extends RepresentationModel<User> {
 
     @Id
@@ -18,7 +18,7 @@ public class User extends RepresentationModel<User> {
     private String passwd;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "used_code",
+    @JoinTable(name = "Used_code",
             joinColumns = @JoinColumn(name = "Utilisateurid"),
             inverseJoinColumns = @JoinColumn(name = "QRCodeID"))
     private List<Qrcode> qrcodes;

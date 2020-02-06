@@ -5,7 +5,7 @@ import org.springframework.hateoas.RepresentationModel;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "qrcode")
+@Entity(name = "QRCode")
 public class Qrcode extends RepresentationModel<Qrcode> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
