@@ -23,6 +23,18 @@ public class User extends RepresentationModel<User> {
             inverseJoinColumns = @JoinColumn(name = "QRCodeID"))
     private List<Qrcode> qrcodes;
 
+    public User() {
+    }
+
+    public User(int id, String nom, String prenom, int numero, String passwd) {
+        super();
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.numero = numero;
+        this.passwd = passwd;
+    }
+
     public int getId() {
         return id;
     }
