@@ -1,5 +1,7 @@
 package com.example.app_mspr_android.views_activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -41,7 +43,9 @@ public class ActivityQRCode extends AppCompatActivity implements ZXingScannerVie
         Log.v("tag", rawResult.getText()); // Prints scan results
         Log.v("tag", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
 
-
+        Intent qrCode = new Intent();
+        qrCode.putExtra("code", rawResult.toString());
+        setResult(Activity.RESULT_OK, qrCode);
         finish();
 
         // If you would like to resume scanning, call this method below:
