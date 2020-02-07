@@ -63,7 +63,6 @@
             android:ellipsize="none"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:background="@color/loginColor"
             android:text="@={userViewModel.userEmail}"/>
 
             />
@@ -90,7 +89,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
             android:inputType="textPassword"
-            android:background="@color/loginColor"
+            android:background="@drawable/edit_text"
             android:padding="10dp"/>
 
     </LinearLayout>
