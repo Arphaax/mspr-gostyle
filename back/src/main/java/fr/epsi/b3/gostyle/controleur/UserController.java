@@ -54,7 +54,7 @@ public class UserController {
             return ResponseEntity.ok(jwt);
         }
         else {
-            return ResponseEntity.status(418).build();
+            return ResponseEntity.status(200).build();
         }
     }
 

@@ -3,7 +3,7 @@ package fr.epsi.b3.gostyle.model;
 import javax.persistence.*;
 import java.util.List;
 
-@Table(name="Utilisateur")
+@Entity(name="Utilisateur")
 public class User {
 
     @Id
