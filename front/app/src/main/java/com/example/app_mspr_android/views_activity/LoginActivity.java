@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         } else {
-            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT);
+            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == QRCODE_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 String info = data.getStringExtra("code");
-                Log.v("return", info); // Prints scan results
+                Log.v("returnCode", info); // Prints scan results
             }
         }
     }

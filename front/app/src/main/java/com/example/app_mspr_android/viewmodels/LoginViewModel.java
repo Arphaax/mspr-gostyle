@@ -7,7 +7,6 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.example.app_mspr_android.Interface.APIInterface;
-import com.example.app_mspr_android.Service.APIService;
 import com.example.app_mspr_android.model.UserModel;
 
 
@@ -27,7 +26,6 @@ public class LoginViewModel extends BaseObservable {
 
         userModel = new UserModel();
 
-        apiInterface = APIService.getRetrofitInstance().create(APIInterface.class);
 
     }
 
