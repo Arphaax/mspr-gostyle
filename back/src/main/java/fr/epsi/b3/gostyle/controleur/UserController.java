@@ -5,6 +5,7 @@ import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 import fr.epsi.b3.gostyle.exception.UserNotFoundException;
 import fr.epsi.b3.gostyle.model.Qrcode;
 import fr.epsi.b3.gostyle.model.User;
+import fr.epsi.b3.gostyle.service.HashingServices;
 import fr.epsi.b3.gostyle.service.UserService;
 import fr.epsi.b3.gostyle.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HashingServices hashingServices;
 
     @Autowired
     private JwtService jwtService;
@@ -67,5 +71,10 @@ public class UserController {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping(path = "/hash")
+    public ResponseEntity<String> hash() {
+        return ResponseEntity.ok(hashingServices.hash("toto"));
     }
 }
