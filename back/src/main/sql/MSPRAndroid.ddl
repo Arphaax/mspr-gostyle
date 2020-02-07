@@ -21,7 +21,8 @@ ALTER TABLE Used_code ADD CONSTRAINT FKUsed_code401939 FOREIGN KEY (Utilisateuri
 ALTER TABLE Used_code ADD CONSTRAINT FKUsed_code334991 FOREIGN KEY (QRCodeID) REFERENCES QRCode (ID);
 
 INSERT INTO Utilisateur(nom, prenom, numero, passwd)
-VALUES ('toto', 'toto', '0600000000', 'toto_passwd');
+VALUES ('toto', 'toto', '0600000000',
+        '$argon2id$v=19$m=4096,t=3,p=1$ePm52avnsQrZFF7829LtEA$fCx59lKhjS9tMrQM/HgKJRxzVMQ0TNo0WGUxipYe4Yc');
 
 INSERT INTO QRCode(libelle, montant)
 VALUES ('reduc1', 15);

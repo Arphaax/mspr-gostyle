@@ -9,7 +9,6 @@ import java.util.Random;
 
 @Service
 public class HashingServices {
-    private static final Random RANDOM = new SecureRandom();
     private Argon2PasswordEncoder argon2;
 
     public HashingServices() {

@@ -72,9 +72,4 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @GetMapping(path = "/hash")
-    public ResponseEntity<String> hash() {
-        return ResponseEntity.ok(hashingServices.hash("toto"));
-    }
 }

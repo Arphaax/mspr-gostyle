@@ -16,11 +16,11 @@ public class HashingServicesTest {
     @Test
     public void hashRetourneUnMotDePasseHasheEnArgon2() {
         String motDePasse = "test";
-        String resultatAttendu = "$argon2i$v=19$m=65536,t=10,p=1$";
+        String resultatAttendu = "$argon2id$v=19$m=4096,t=3,p=1$";
 
         String hash = hashingServices.hash(motDePasse);
 
-        assertEquals(resultatAttendu, hash.substring(0, 31));
+        assertEquals(resultatAttendu, hash.substring(0, 30));
     }
 
     @Test
