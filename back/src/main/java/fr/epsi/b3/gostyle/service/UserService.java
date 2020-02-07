@@ -1,6 +1,7 @@
 package fr.epsi.b3.gostyle.service;
 
 import fr.epsi.b3.gostyle.dao.UserDao;
+import fr.epsi.b3.gostyle.exception.UserNotFoundException;
 import fr.epsi.b3.gostyle.model.Qrcode;
 import fr.epsi.b3.gostyle.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,12 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public User getById(int id) {
-        return userDao.getById(id);
+    public User getById(int id) throws UserNotFoundException {
+        User user = userDao.getById(id);
+        if(user == null) {
+        	throw new UserNotFoundException("Utilisateur not found");
+        }
+        return user;
     }
 
     public User getByLogin(int numero) { return userDao.getByLogin(numero); }
