@@ -1,6 +1,5 @@
-package com.example.app_mspr_android.views;
+package com.example.app_mspr_android.views_activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +18,9 @@ public class LoginActivity extends AppCompatActivity {
     @BindingAdapter({"connnexionButton"})
     public static void runMe(View view, String message) {
         if (message == (LoginViewModel.SUCCESS)) {
-            view.getContext().startActivity(new Intent(view.getContext(), Activity2.class));
-            ((Activity) view.getContext()).finish();
+            view.getContext().startActivity(new Intent(view.getContext(), ActivityQRCode.class));
+
+            //((Activity) view.getContext()).finish();
         } else {
             Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT);
         }
@@ -36,7 +36,5 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void test() {
 
-    }
 }

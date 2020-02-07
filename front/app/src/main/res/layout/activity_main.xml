@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.Activity2">
+    tools:context=".views_activity.MainActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
