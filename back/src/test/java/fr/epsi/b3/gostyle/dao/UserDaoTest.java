@@ -25,7 +25,7 @@ public class UserDaoTest {
         User user = new User();
         user.setId(1);
         user.setNom("toto");
-        user.setNumero(0670707070);
+        user.setNumero("0670707070");
 
         int id = 1;
         when(mockedEm.find(User.class, id)).thenReturn(user);

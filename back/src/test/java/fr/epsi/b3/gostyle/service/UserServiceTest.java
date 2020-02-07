@@ -1,6 +1,7 @@
 package fr.epsi.b3.gostyle.service;
 
 import fr.epsi.b3.gostyle.dao.UserDao;
+import fr.epsi.b3.gostyle.exception.UserNotFoundException;
 import fr.epsi.b3.gostyle.model.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,11 +21,11 @@ public class UserServiceTest {
     }
 
     @Test
-    public void getByIdRetourneUnUtilisateur() {
+    public void getByIdRetourneUnUtilisateur() throws UserNotFoundException {
         User user = new User();
         user.setId(1);
         user.setNom("toto");
-        user.setNumero(0600000000);
+        user.setNumero("0600000000");
         user.setPasswd("toto_password");
         when(userDao.getById(user.getId())).thenReturn(user);
 

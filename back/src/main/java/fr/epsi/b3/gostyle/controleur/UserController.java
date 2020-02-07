@@ -1,5 +1,6 @@
 package fr.epsi.b3.gostyle.controleur;
 
+import fr.epsi.b3.gostyle.dto.UserDto;
 import fr.epsi.b3.gostyle.exception.Erreur;
 import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 import fr.epsi.b3.gostyle.exception.UserNotFoundException;
@@ -8,6 +9,7 @@ import fr.epsi.b3.gostyle.model.User;
 import fr.epsi.b3.gostyle.service.UserService;
 import fr.epsi.b3.gostyle.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,16 +46,15 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "/{numero}/authenticate")
-    public ResponseEntity<String> authenticate(@PathVariable String numero,
-                                               @RequestBody String passwd) {
-        String jwt = jwtService.authenticate(Integer.parseInt(numero), passwd);
+    @PostMapping(path = "/authenticate")
+    public ResponseEntity<String> authenticate(@RequestBody UserDto identif) {
+        String jwt = jwtService.authenticate(identif.getNumero(), identif.getPassword());
 
         if (jwt != null) {
             return ResponseEntity.ok(jwt);
         }
         else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(418).build();
         }
     }
 
