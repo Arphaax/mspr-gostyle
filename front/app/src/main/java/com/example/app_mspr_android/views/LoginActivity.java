@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.BindingAdapter;
@@ -20,7 +21,8 @@ public class LoginActivity extends AppCompatActivity {
         if (message == (LoginViewModel.SUCCESS)) {
             view.getContext().startActivity(new Intent(view.getContext(), Activity2.class));
             ((Activity) view.getContext()).finish();
-
+        } else {
+            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT);
         }
     }
 
