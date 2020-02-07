@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">APP-MSPR-ANDROID</string>
-<<<<<<< HEAD
+
     <string name="title_activity_main2">Main2Activity</string>
-=======
+
     <string name="BienvenuName">Bienvenue Levy</string>
     <string name="deconnexion">Deconnexion</string>
->>>>>>> 42d4937c945eb663f4cda5f8647d6f27b4c8f033
+
 </resources>
