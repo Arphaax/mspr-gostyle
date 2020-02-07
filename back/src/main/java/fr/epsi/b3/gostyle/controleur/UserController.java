@@ -2,6 +2,7 @@ package fr.epsi.b3.gostyle.controleur;
 
 import fr.epsi.b3.gostyle.dto.UserDto;
 import fr.epsi.b3.gostyle.exception.Erreur;
+import fr.epsi.b3.gostyle.exception.IncorrectLoginsException;
 import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 import fr.epsi.b3.gostyle.exception.UserNotFoundException;
 import fr.epsi.b3.gostyle.model.Qrcode;
@@ -35,6 +36,12 @@ public class UserController {
 	public Erreur handleInscriptionInexistanteException(UserNotFoundException e) {
 		return new Erreur(e);
 	}
+
+    @ExceptionHandler(IncorrectLoginsException.class)
+    @ResponseStatus(code = HttpStatus.FORBIDDEN)
+    public Erreur handleLoginsIncorrectException(IncorrectLoginsException e) {
+        return new Erreur(e);
+    }
     /*
      *
      */
@@ -51,15 +58,9 @@ public class UserController {
     }
 
     @PostMapping(path = "/authenticate")
-    public ResponseEntity<String> authenticate(@RequestBody UserDto identif) {
+    public ResponseEntity<String> authenticate(@RequestBody UserDto identif) throws IncorrectLoginsException {
         String jwt = jwtService.authenticate(identif.getNumero(), identif.getPassword());
-
-        if (jwt != null) {
-            return ResponseEntity.ok(jwt);
-        }
-        else {
-            return ResponseEntity.status(200).build();
-        }
+        return ResponseEntity.ok(jwt);
     }
 
     @GetMapping(path = "/{id}/qrcodes")

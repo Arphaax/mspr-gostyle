@@ -15,6 +15,9 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private HashingServices hashingServices;
+
     public User getById(int id) throws UserNotFoundException {
         User user = userDao.getById(id);
         if(user == null) {
@@ -31,10 +34,14 @@ public class UserService {
         if (user == null) {
             return false;
         }
-        if (user.getPasswd() == passwd) {
-            return true;
+        else {
+            if (hashingServices.verifier(passwd, user.getPasswd())) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        return false;
     }
 
     public List<Qrcode> getAllQrCodesOfUser(int id) {
