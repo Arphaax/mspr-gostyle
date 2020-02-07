@@ -1,13 +1,9 @@
 package fr.epsi.b3.gostyle.service;
 
 import fr.epsi.b3.gostyle.dao.UserDao;
-<<<<<<< HEAD
 import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 import fr.epsi.b3.gostyle.exception.UserNotFoundException;
 import fr.epsi.b3.gostyle.model.Qrcode;
-=======
-import fr.epsi.b3.gostyle.exception.UserNotFoundException;
->>>>>>> Api/gostyle006 Skeleton update authenticate method
 import fr.epsi.b3.gostyle.model.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +29,7 @@ public class UserServiceTest {
         User user = new User(1,
                 "toto",
                 "toto",
-                0600000000,
+                "0600000000",
                 "toto_password");
         Mockito.when(userService.getById(user.getId())).thenReturn(user);
 
@@ -47,7 +43,7 @@ public class UserServiceTest {
         User user = new User(1,
                 "toto",
                 "toto",
-                0600000000,
+                "0600000000",
                 "toto_password");
 
         Qrcode qrcode1 = new Qrcode(1, "reduction", 15);

@@ -23,7 +23,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String nom, String prenom, int numero, String passwd) {
+    public User(int id, String nom, String prenom, String numero, String passwd) {
         super();
         this.id = id;
         this.nom = nom;
