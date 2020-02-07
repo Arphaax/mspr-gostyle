@@ -8,7 +8,7 @@ public class JwtService {
     @Autowired
     private UserService userService;
 
-    public String authenticate(int numero, String passwd) {
+    public String authenticate(String numero, String passwd) {
         if (userService.verifyLogins(numero, passwd)) {
             String token = "";
             return token;

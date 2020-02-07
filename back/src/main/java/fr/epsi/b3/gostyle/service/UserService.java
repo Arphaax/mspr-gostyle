@@ -23,22 +23,18 @@ public class UserService {
         return user;
     }
 
-    public User getByLogin(int numero) { return userDao.getByLogin(numero); }
+    public User getByLogin(String numero) { return userDao.getByLogin(numero); }
 
-    public boolean verifyLogins(int numero, String passwd) {
+    public boolean verifyLogins(String numero, String passwd) {
         User user = getByLogin(numero);
 
         if (user == null) {
             return false;
         }
-        else {
-            if (user.getPasswd() == passwd) {
-                return true;
-            }
-            else {
-                return false;
-            }
+        if (user.getPasswd() == passwd) {
+            return true;
         }
+        return false;
     }
 
     public List<Qrcode> getAllQrCodesOfUser(int id) {

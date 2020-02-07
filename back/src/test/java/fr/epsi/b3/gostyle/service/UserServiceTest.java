@@ -1,9 +1,13 @@
 package fr.epsi.b3.gostyle.service;
 
 import fr.epsi.b3.gostyle.dao.UserDao;
+<<<<<<< HEAD
 import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 import fr.epsi.b3.gostyle.exception.UserNotFoundException;
 import fr.epsi.b3.gostyle.model.Qrcode;
+=======
+import fr.epsi.b3.gostyle.exception.UserNotFoundException;
+>>>>>>> Api/gostyle006 Skeleton update authenticate method
 import fr.epsi.b3.gostyle.model.User;
 import org.junit.Before;
 import org.junit.Test;

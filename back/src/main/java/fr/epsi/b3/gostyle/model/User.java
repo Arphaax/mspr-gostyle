@@ -1,20 +1,17 @@
 package fr.epsi.b3.gostyle.model;
 
-import org.springframework.hateoas.RepresentationModel;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "Utilisateur")
-public class User extends RepresentationModel<User> {
+@Table(name="Utilisateur")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nom;
     private String prenom;
-    private int numero;
+    private String numero;
     private String passwd;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -59,11 +56,11 @@ public class User extends RepresentationModel<User> {
         this.prenom = prenom;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

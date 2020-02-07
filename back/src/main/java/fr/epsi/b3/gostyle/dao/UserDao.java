@@ -26,9 +26,11 @@ public class UserDao {
         return em.find(User.class, id);
     }
 
-    @Transactional(readOnly = true)
-    public User getByLogin(int numero) {
-        return em.find(User.class, numero);
+    @Transactional
+    public User getByLogin(String numero) {
+        User result =  em.createQuery("SELECT u FROM "+ User.class.getName()+" u WHERE u.numero = '"+numero+"'", User.class)
+    					 .getSingleResult();
+        return result;
     }
 
     @Transactional(readOnly = true)
