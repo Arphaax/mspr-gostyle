@@ -57,12 +57,6 @@ public class UserController {
         }
     }
 
-    @PostMapping(path = "/authenticate")
-    public ResponseEntity<String> authenticate(@RequestBody UserDto identif) throws IncorrectLoginsException {
-        String jwt = jwtService.authenticate(identif.getNumero(), identif.getPassword());
-        return ResponseEntity.ok(jwt);
-    }
-
     @GetMapping(path = "/{id}/qrcodes")
     public ResponseEntity<List<Qrcode>> getAllQrCodesOfUser(@PathVariable String id) {
         List<Qrcode> qrcodes = userService.getAllQrCodesOfUser(Integer.parseInt(id));
