@@ -1,15 +1,21 @@
 package com.example.app_mspr_android.viewmodels;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.example.app_mspr_android.Interface.APIInterface;
+import com.example.app_mspr_android.Repository.UserRepository;
+import com.example.app_mspr_android.Service.APIService;
+import com.example.app_mspr_android.model.Token;
 import com.example.app_mspr_android.model.UserModel;
 
-
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginViewModel extends BaseObservable {
@@ -17,7 +23,7 @@ public class LoginViewModel extends BaseObservable {
     public static final String SUCCESS = "SUCCESS_CONNEXION";
 
     private UserModel userModel;
-    private APIInterface apiInterface;
+    private UserRepository userRepository;
 
     @Bindable
     private String message;
@@ -25,6 +31,7 @@ public class LoginViewModel extends BaseObservable {
     public LoginViewModel() {
 
         userModel = new UserModel();
+        userRepository= new UserRepository();
 
 
     }
@@ -66,6 +73,24 @@ public class LoginViewModel extends BaseObservable {
     }
 
     public void onClicked() {
-        setMessage(SUCCESS);
+        try {
+            Call call = userRepository.authenticate(userModel);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) {
+
+                }
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+
+                }
+            });
+        }
+        catch (Exception e){
+            Log.v("INFORM", e.getMessage().toString()); // Prints scan results
+        }
+
+
     }
 }
