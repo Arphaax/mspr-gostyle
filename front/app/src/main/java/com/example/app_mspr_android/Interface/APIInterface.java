@@ -10,7 +10,7 @@ import retrofit2.http.POST;
 public interface APIInterface {
 
 
-    @POST("api/user/authenticate")
-    Call<Token> authenticate(@Body UserModel userModel);
+    @POST("api/users/authenticate")
+    Call authenticate(@Body UserModel userModel);
 
 }

@@ -60,7 +60,7 @@
             android:layout_marginTop="10dp"
             android:inputType="textEmailAddress"
             android:background="@drawable/edit_text"
-            android:text="@={userViewModel.userEmail}"/>
+            android:text="@={userViewModel.userNumero}"/>
 
 
         <TextView

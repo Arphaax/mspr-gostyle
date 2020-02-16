@@ -49,12 +49,12 @@ public class LoginViewModel extends BaseObservable {
 
 
     @Bindable
-    public String getUserEmail(){
-        return userModel.getEmail();
+    public String getUserNumero(){
+        return userModel.getNumero();
     }
 
-    public void setUserEmail(String email){
-        userModel.setEmail(email);
+    public void setUserEmail(String numero){
+        userModel.setNumero(numero);
         notifyPropertyChanged(com.example.app_mspr_android.BR.userEmail);
     }
 
@@ -69,7 +69,7 @@ public class LoginViewModel extends BaseObservable {
     }
 
     public boolean isInputDataValid() {
-        return TextUtils.isEmpty(getUserEmail()) && Patterns.EMAIL_ADDRESS.matcher(getUserEmail()).matches() && getUserPassword().length() > 5;
+        return TextUtils.isEmpty(getUserNumero()) && Patterns.EMAIL_ADDRESS.matcher(getUserNumero()).matches() && getUserPassword().length() > 5;
     }
 
     public void onClicked() {
