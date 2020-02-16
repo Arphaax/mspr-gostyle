@@ -21,11 +21,12 @@ public class LoginActivity extends AppCompatActivity {
 
     @BindingAdapter({"connnexionButton"})
     public static void runMe(View view, String message) {
-        if (message == (LoginViewModel.SUCCESS)) {
+        if (message == LoginViewModel.SUCCESS) {
             ((Activity) view.getContext()).startActivityForResult(new Intent(view.getContext(), ActivityQRCode.class), QRCODE_REQUEST);
 
 
-        } else {
+        }
+        if(message != null && !message.isEmpty()){
             Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
         }
     }

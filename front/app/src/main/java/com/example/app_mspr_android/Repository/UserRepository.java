@@ -4,6 +4,7 @@ import com.example.app_mspr_android.Interface.APIInterface;
 import com.example.app_mspr_android.Service.APIService;
 import com.example.app_mspr_android.model.UserModel;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 
 public class UserRepository {
@@ -15,7 +16,7 @@ public class UserRepository {
         apiInterface= APIService.getApiService();
     }
 
-    public Call authenticate(UserModel userModel) throws Exception {
+    public Call<ResponseBody> authenticate(UserModel userModel) {
        return apiInterface.authenticate(userModel);
 
     }

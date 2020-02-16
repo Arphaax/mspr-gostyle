@@ -23,7 +23,7 @@ import retrofit2.Response;
 public class LoginViewModel extends BaseObservable {
 
     public static final String SUCCESS = "SUCCESS_CONNEXION";
-    public static final String FALSE = "WRONG CREDENTIALS";
+    public static final String FALSE_MESSAGE = "WRONG CREDENTIALS";
 
     private UserModel userModel;
     private UserRepository userRepository;
@@ -78,6 +78,12 @@ public class LoginViewModel extends BaseObservable {
             userRepository.authenticate(userModel).enqueue((new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if(response.code()==200){
+
+                    }
+                    else {
+                        setMessage(FALSE_MESSAGE);
+                    }
 
                 }
 
