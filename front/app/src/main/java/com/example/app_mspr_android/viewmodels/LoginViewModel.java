@@ -7,12 +7,14 @@ import android.util.Patterns;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
+import com.example.app_mspr_android.BR;
 import com.example.app_mspr_android.Interface.APIInterface;
 import com.example.app_mspr_android.Repository.UserRepository;
 import com.example.app_mspr_android.Service.APIService;
 import com.example.app_mspr_android.model.Token;
 import com.example.app_mspr_android.model.UserModel;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,6 +23,7 @@ import retrofit2.Response;
 public class LoginViewModel extends BaseObservable {
 
     public static final String SUCCESS = "SUCCESS_CONNEXION";
+    public static final String FALSE = "WRONG CREDENTIALS";
 
     private UserModel userModel;
     private UserRepository userRepository;
@@ -53,9 +56,9 @@ public class LoginViewModel extends BaseObservable {
         return userModel.getNumero();
     }
 
-    public void setUserEmail(String numero){
+    public void setUserNumero(String numero){
         userModel.setNumero(numero);
-        notifyPropertyChanged(com.example.app_mspr_android.BR.userEmail);
+        notifyPropertyChanged(com.example.app_mspr_android.BR.userNumero);
     }
 
     @Bindable
@@ -68,24 +71,21 @@ public class LoginViewModel extends BaseObservable {
         notifyPropertyChanged(com.example.app_mspr_android.BR.userPassword);
     }
 
-    public boolean isInputDataValid() {
-        return TextUtils.isEmpty(getUserNumero()) && Patterns.EMAIL_ADDRESS.matcher(getUserNumero()).matches() && getUserPassword().length() > 5;
-    }
+
 
     public void onClicked() {
         try {
-            Call call = userRepository.authenticate(userModel);
-            call.enqueue(new Callback() {
+            userRepository.authenticate(userModel).enqueue((new Callback<ResponseBody>() {
                 @Override
-                public void onResponse(Call call, Response response) {
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 }
 
                 @Override
-                public void onFailure(Call call, Throwable t) {
+                public void onFailure(Call<ResponseBody>  call, Throwable t) {
 
                 }
-            });
+            }));
         }
         catch (Exception e){
             Log.v("INFORM", e.getMessage().toString()); // Prints scan results
