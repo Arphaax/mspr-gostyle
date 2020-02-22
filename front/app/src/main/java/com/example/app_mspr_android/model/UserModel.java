@@ -1,9 +1,26 @@
 package com.example.app_mspr_android.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class UserModel {
 
-    private String email;
+    @SerializedName("numero")
+    @Expose
+    private String numero;
+
+    @SerializedName("password")
+    @Expose
     private String password;
+
+    public UserModel(String email, String password) {
+        this.numero = email;
+        this.password = password;
+    }
+
+    public UserModel() {
+
+    }
 
     public String getPassword() {
         return password;
@@ -13,11 +30,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNumero(String email) {
+        this.numero = email;
     }
 }
