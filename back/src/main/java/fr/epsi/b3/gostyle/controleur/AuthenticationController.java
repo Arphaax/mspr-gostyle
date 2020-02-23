@@ -33,10 +33,11 @@ public class AuthenticationController {
 
     @PostMapping(value = "/")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getNumero(), authenticationRequest.getPassword());
+        //authenticate(authenticationRequest.getNumero(), authenticationRequest.getPassword());
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getNumero());
         HttpHeaders responseHeaders = jwtTokenUtil.getTokenAsHeader(userDetails);
-        return ResponseEntity.ok().headers(responseHeaders).body(null);
+        User user = userService.getByLogin(authenticationRequest.getNumero());
+        return ResponseEntity.ok().headers(responseHeaders).body(user);
     }
 
     private Authentication authenticate(String username, String password) throws Exception {

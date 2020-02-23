@@ -16,19 +16,21 @@
     android:background="@drawable/frame_2"
     bind:context=".views_activity.LoginActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="117dp"
-        android:layout_marginEnd="122dp"
-        android:layout_marginBottom="573dp"
-        android:gravity="top"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:text="Connectez-vous" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="573dp"
+            android:text="Connectez-vous"
+            android:textSize="30dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,55 +41,70 @@
         android:layout_marginBottom="312dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="72dp"
-            android:layout_height="24dp"
-            android:layout_marginLeft="35dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            android:text="Email"
-            android:textColor="#FA070707"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="50dp"
+                android:text="Email"
+                android:textColor="#FA070707"
+                android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/editText3"
-            android:layout_width="335dp"
-            android:layout_height="54dp"
-            android:ems="10"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/edit_text"
-            android:text="@={userViewModel.userNumero}"/>
-
-
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="10dp"
-            android:text="Password"
-            android:textColor="#FA070707"
-            android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="335dp"
+                android:layout_height="54dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textEmailAddress"
+                android:text="@={userViewModel.userNumero}" />
+        </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="335dp"
-            android:layout_height="54dp"
-            android:ems="10"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:inputType="textPersonName"
-            android:background="@drawable/edit_text"
-            android:padding="10dp"
-            android:text="@={userViewModel.userPassword}"/>
+            <TextView
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="Password"
+                android:textColor="#FA070707"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="335dp"
+                android:layout_height="54dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit_text"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:text="@={userViewModel.userPassword}" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -101,10 +118,9 @@
         android:layout_marginBottom="134dp"
         android:text="connexion"
         android:textColor="#FA070707"
-        android:textSize="18sp"
+        android:onClick="@{ (view)-> userViewModel.onClicked(view) }"
         android:background="@drawable/button_color"
-        android:onClick="@{ ()-> userViewModel.onClicked() }"
-        bind:connnexionButton="@{userViewModel.message}" />
+        android:textSize="15sp" />
 
 
 </RelativeLayout>

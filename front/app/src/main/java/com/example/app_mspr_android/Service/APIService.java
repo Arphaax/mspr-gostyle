@@ -13,11 +13,9 @@ public class APIService {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    private static APIInterface client;
 
     public static APIInterface getApiService() {
-        client = retrofit.create(APIInterface.class);
-        return client;
+        return retrofit.create(APIInterface.class);
     }
 
 
