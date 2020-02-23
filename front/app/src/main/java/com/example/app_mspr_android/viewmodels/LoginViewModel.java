@@ -46,7 +46,6 @@ public class LoginViewModel extends BaseObservable {
     }
 
 
-
     @Bindable
     public String getUserNumero(){
         return userModel.getNumero();
