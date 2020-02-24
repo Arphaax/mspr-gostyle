@@ -4,11 +4,13 @@ package com.example.app_mspr_android.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class QrcodeModel {
+import java.io.Serializable;
 
-    @SerializedName("ID")
+public class QrcodeModel implements Serializable {
+
+    @SerializedName("id")
     @Expose
-    private int ID;
+    private int id;
     @SerializedName("libelle")
     @Expose
     private String libelle;
@@ -18,7 +20,7 @@ public class QrcodeModel {
 
     public QrcodeModel(int i, String string, int j) {
 
-        ID = i;
+        id = i;
         libelle = string;
         montant = j;
     }
@@ -43,7 +45,11 @@ public class QrcodeModel {
         this.montant = montant;
     }
 
-    public int getID() {
-        return ID;
+    public String getId() {
+        return Integer.toString(id);
+    }
+
+    public int setId() {
+        return id;
     }
 }

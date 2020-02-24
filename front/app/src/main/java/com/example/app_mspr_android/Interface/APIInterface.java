@@ -24,7 +24,11 @@ public interface APIInterface {
 
     @Headers("Content-Type: application/json")
     @GET("/api/qrcodes/{location}")
-    Call<QrcodeModel> getQrcode(@Path("location") int location);
+    Call<QrcodeModel> getQrcodeByLabel(@Path("location") String location);
+
+    @Headers("Content-Type: application/json")
+    @GET("/api/qrcodes/{location}")
+    Call<QrcodeModel> getQrcodeById(@Path("location") int location);
 
 
 

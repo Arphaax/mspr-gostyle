@@ -13,7 +13,7 @@ public class QrcodeRepository implements IAPIService {
         return apiInterface.getAllQrcode(id);
     }
 
-    public Call<QrcodeModel> getQrCode(int id) {
-        return apiInterface.getQrcode(id);
+    public Call<QrcodeModel> getQrCodeByLabel(String id) {
+        return apiInterface.getQrcodeByLabel(id);
     }
 }

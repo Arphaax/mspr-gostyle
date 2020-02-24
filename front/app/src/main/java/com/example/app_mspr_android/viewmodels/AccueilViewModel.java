@@ -3,6 +3,7 @@ package com.example.app_mspr_android.viewmodels;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -23,41 +24,35 @@ import retrofit2.Response;
 
 public class AccueilViewModel extends BaseObservable {
 
+
+    private static final String INTERNAL_ERROR = "Une erreur interne est survenue";
+    private static final String CODE_INNEXISTANT = "Ce code n'existe pas";
     public static final int QRCODE_REQUEST = 1;
-    private static final String CAN_EXECUTE = "Deconnexion";
-    public MutableLiveData<ArrayList<QrcodeModel>> mutableLiveData = new MutableLiveData<>();
+
+
+    public MutableLiveData<ArrayList<QrcodeModel>> mutableLiveData;
     private AccueilModel accueilModel;
     private QrcodeRepository qrcodeRepository;
     private UserModel userModel;
-    @Bindable
-    private String message;
+    private View view;
 
 
-    public AccueilViewModel(UserModel userModel) {
+    public AccueilViewModel(UserModel userModel, View root) {
         accueilModel = new AccueilModel();
         qrcodeRepository = new QrcodeRepository();
         this.userModel = userModel;
+        view = root;
+        mutableLiveData = new MutableLiveData<>();
 
         GetAllQrCode();
     }
 
-    @Bindable
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     @Bindable
     public UserModel getUserModel() {
         return userModel;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
-    }
 
     @Bindable
     public ArrayList<QrcodeModel> getListQrCode() {
@@ -70,9 +65,33 @@ public class AccueilViewModel extends BaseObservable {
     }
 
 
-    public void addQrcodeInList(QrcodeModel qrCode) {
-        // accueilModel.getQrcodeModelList().add(qrCode);
-        notifyPropertyChanged(com.example.app_mspr_android.BR.listQrCode);
+    public void GetQrCodeByCode(String id) {
+
+        qrcodeRepository.getQrCodeByLabel(id).enqueue((new Callback<QrcodeModel>() {
+            @Override
+            public void onResponse(Call<QrcodeModel> call, Response<QrcodeModel> response) {
+
+                switch (response.code()) {
+                    case 200:
+                        accueilModel.getQrcodeModelList().add(response.body());
+                        mutableLiveData.setValue(getListQrCode());
+                        break;
+                    case 404:
+                        Toast.makeText(view.getContext(), CODE_INNEXISTANT, Toast.LENGTH_SHORT).show();
+
+                    default:
+                        Toast.makeText(view.getContext(), INTERNAL_ERROR, Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<QrcodeModel> call, Throwable t) {
+                Toast.makeText(view.getContext(), INTERNAL_ERROR, Toast.LENGTH_SHORT).show();
+            }
+        }));
+
     }
 
 
@@ -82,14 +101,22 @@ public class AccueilViewModel extends BaseObservable {
         qrcodeRepository.getAllQrCode(userModel.getId()).enqueue((new Callback<ArrayList<QrcodeModel>>() {
             @Override
             public void onResponse(Call<ArrayList<QrcodeModel>> call, Response<ArrayList<QrcodeModel>> response) {
-                setListQrCode(response.body());
-                ArrayList<QrcodeModel> test = getListQrCode();
-                mutableLiveData.setValue(test);
+                switch (response.code()) {
+                    case 200:
+                        setListQrCode(response.body());
+                        mutableLiveData.setValue(getListQrCode());
+                        break;
+
+                    default:
+                        Toast.makeText(view.getContext(), INTERNAL_ERROR, Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
             }
 
             @Override
             public void onFailure(Call<ArrayList<QrcodeModel>> call, Throwable t) {
-
+                Toast.makeText(view.getContext(), INTERNAL_ERROR, Toast.LENGTH_SHORT).show();
             }
         }));
 

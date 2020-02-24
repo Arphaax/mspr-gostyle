@@ -40,7 +40,10 @@ public class QrcodeAdapter extends ArrayAdapter<QrcodeModel> {
         btnListBinding.getRoot().findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.getContext().startActivity(new Intent(v.getContext(), DetailsAvtivity.class));
+                QrcodeModel item = qrcodeModelArrayList.get(position);
+                Intent intent = new Intent(v.getContext(), DetailsAvtivity.class);
+                intent.putExtra("qrCodeInfo", item);
+                v.getContext().startActivity(intent);
 
             }
         });

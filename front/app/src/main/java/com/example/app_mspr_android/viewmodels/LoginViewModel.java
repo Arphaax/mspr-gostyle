@@ -91,13 +91,13 @@ public class LoginViewModel extends BaseObservable {
                             break;
 
                         case 403:
-                            setMessage(WRONG_CREDENTIALS);
-                            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(view.getContext(), WRONG_CREDENTIALS, Toast.LENGTH_SHORT).show();
                             break;
 
                         default:
-                            setMessage(INTERNAL_ERROR);
-                            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(view.getContext(), INTERNAL_ERROR, Toast.LENGTH_SHORT).show();
                             break;
                     }
 
@@ -107,6 +107,7 @@ public class LoginViewModel extends BaseObservable {
                 @Override
                 public void onFailure(Call<UserModel> call, Throwable t) {
                     setMessage(INTERNAL_ERROR);
+                    Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
                 }
             }));
         }

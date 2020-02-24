@@ -31,11 +31,12 @@ public class AccueilActivity extends AppCompatActivity {
 
 
         ActivityAccueilBinding activityAccueilBinding = DataBindingUtil.setContentView(this, R.layout.activity_accueil);
-        accueilViewModel = new AccueilViewModel(userModel);
+        accueilViewModel = new AccueilViewModel(userModel, activityAccueilBinding.getRoot());
         activityAccueilBinding.setAccueilVm(accueilViewModel);
         qrcodeAdapter = new QrcodeAdapter(this, accueilViewModel.getListQrCode());
         activityAccueilBinding.listView.setAdapter(qrcodeAdapter);
         activityAccueilBinding.executePendingBindings();
+
         accueilViewModel.mutableLiveData.observe(this, new Observer<ArrayList<QrcodeModel>>() {
             @Override
             public void onChanged(ArrayList<QrcodeModel> qrcodeModelArrayList) {
@@ -55,6 +56,8 @@ public class AccueilActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == AccueilViewModel.QRCODE_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
+                String info = data.getStringExtra("code");
+                accueilViewModel.GetQrCodeByCode(info);
 
 
             }

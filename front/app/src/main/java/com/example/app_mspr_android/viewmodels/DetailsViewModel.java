@@ -9,10 +9,6 @@ import androidx.databinding.Bindable;
 import com.example.app_mspr_android.Repository.QrcodeRepository;
 import com.example.app_mspr_android.model.QrcodeModel;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class DetailsViewModel extends BaseObservable {
 
 
@@ -21,10 +17,10 @@ public class DetailsViewModel extends BaseObservable {
     private QrcodeModel qrcodeModel;
 
 
-    public DetailsViewModel() {
-        qrcodeModel = new QrcodeModel();
+    public DetailsViewModel(QrcodeModel qrcodeModel) {
+        this.qrcodeModel = qrcodeModel;
         qrcodeRepository = new QrcodeRepository();
-        GetQrcode();
+
     }
 
     @Bindable
@@ -38,23 +34,14 @@ public class DetailsViewModel extends BaseObservable {
     }
 
 
-    public void GetQrcode() {
-        qrcodeRepository.getQrCode(1).enqueue(new Callback<QrcodeModel>() {
-            @Override
-            public void onResponse(Call<QrcodeModel> call, Response<QrcodeModel> response) {
-                setQrcodeModel(response.body());
-            }
+    public void deleteQrCode() {
 
-            @Override
-            public void onFailure(Call<QrcodeModel> call, Throwable t) {
-
-            }
-        });
     }
 
 
     public void onClicked(View view) {
         ((Activity) view.getContext()).finish();
+
     }
 
 
