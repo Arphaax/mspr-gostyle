@@ -1,6 +1,7 @@
 package fr.epsi.b3.gostyle.security;
 
 import fr.epsi.b3.gostyle.service.UserService;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,11 +44,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
                 System.out.println("Unable to get JWT Token");
 
-            } /*catch (ExpiredJwtException e) {
+            } catch (ExpiredJwtException e) {
 
                 System.out.println("JWT Token has expired");
 
-            }*/
+            }
 
         }
 
