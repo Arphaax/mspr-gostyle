@@ -73,7 +73,7 @@
                 android:layout_marginLeft="27dp"
                 android:background="@drawable/description_label"
                 android:gravity="center"
-                android:text="test"
+                android:text="@{detailsvm.qrcodeModel.montant}"
                 android:textColor="#000"
                 android:textSize="17dp" />
         </LinearLayout>
