@@ -187,7 +187,7 @@
 			"response": []
 		},
 		{
-			"name": "QrCode getById Copy",
+			"name": "QrCode getById with wrong id",
 			"event": [
 				{
 					"listen": "test",
@@ -235,23 +235,22 @@
 					"script": {
 						"id": "6b39a770-f5ae-4b3e-9d18-f666d7fe8785",
 						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
 							"pm.test(\"Status should be 200\", function() {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Body is JSON data\", function() {",
-							"   pm.response.to.have.jsonBody('nom')",
+							"pm.test(\"Body should contain Argon2i password field\", function() {",
+							"   pm.expect(jsonData.passwd).contain(\"argon2i\"); ",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -262,23 +261,65 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numero\": \"\",\n\t\"passwd\": \"\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					"raw": "{\n\t\"numero\": \"0600000000\",\n\t\"password\": \"toto_passwd\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/users/authenticate",
+					"raw": "http://localhost:8080/api/authenticate/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"users",
-						"authenticate"
+						"api",
+						"authenticate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User authenticate with wrong credentials",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b39a770-f5ae-4b3e-9d18-f666d7fe8785",
+						"exec": [
+							"pm.test(\"Status should be 401\", function() {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"numero\": \"0600000000\",\n\t\"password\": \"tata\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/authenticate/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"authenticate",
+						""
 					]
 				}
 			},
@@ -287,31 +328,31 @@
 	],
 	"variable": [
 		{
-			"id": "b68f8a01-f959-4024-8b9a-aea6b195119a",
+			"id": "c06cd2a7-0219-40ad-800e-ba341790bd77",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "ec4940aa-9d87-46d6-9e5c-59516ae8f8ea",
+			"id": "fe66ce81-b140-44a5-b20d-62e2729e031c",
 			"key": "qrCodeId1",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "d25569eb-aecd-46a6-b6f0-8c8d419b9eb6",
+			"id": "c5120c16-b1a4-4d33-91fe-29494d10228b",
 			"key": "qrCodeId2",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "f2c96f6a-995d-42c4-9125-fe54fc6ed29d",
+			"id": "1ed29da7-c605-41aa-9b8b-01fd53af7f9a",
 			"key": "wrongUser",
 			"value": "160",
 			"type": "string"
 		},
 		{
-			"id": "81f0db73-5783-43d8-8ea5-e924747591b8",
+			"id": "aaca582a-bb10-4f74-a9d7-d69eb6d4794f",
 			"key": "wrongQrCode",
 			"value": "160",
 			"type": "string"
