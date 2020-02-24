@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7ac70245-8d28-4e67-88e7-8b55a000b946",
+		"_postman_id": "c5035200-343b-4859-9e03-230985694137",
 		"name": "MSPR-Gostyle",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -187,7 +187,7 @@
 			"response": []
 		},
 		{
-			"name": "QrCode getById with wrong id",
+			"name": "QrCode getById Copy",
 			"event": [
 				{
 					"listen": "test",
@@ -235,22 +235,23 @@
 					"script": {
 						"id": "6b39a770-f5ae-4b3e-9d18-f666d7fe8785",
 						"exec": [
-							"var jsonData = pm.response.json();",
-							"",
 							"pm.test(\"Status should be 200\", function() {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Body should contain Argon2i password field\", function() {",
-							"   pm.expect(jsonData.passwd).contain(\"argon2i\"); ",
+							"pm.test(\"Body is JSON data\", function() {",
+							"   pm.response.to.have.jsonBody('nom')",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -261,34 +262,38 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numero\": \"0600000000\",\n\t\"password\": \"toto_passwd\"\n}"
+					"raw": "{\n\t\"numero\": \"\",\n\t\"passwd\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/authenticate/",
+					"raw": "http://localhost:8080/users/authenticate",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
-						"authenticate",
-						""
+						"users",
+						"authenticate"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "User authenticate with wrong credentials",
+			"name": "Find Qrcodes ",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "6b39a770-f5ae-4b3e-9d18-f666d7fe8785",
+						"id": "4c412e6a-cc9a-40a0-bcca-0c8f710ec565",
 						"exec": [
-							"pm.test(\"Status should be 401\", function() {",
-							"    pm.response.to.have.status(401);",
+							"pm.test(\"Status should be 200\", function() {",
+							"    pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -307,19 +312,24 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"numero\": \"0600000000\",\n\t\"password\": \"tata\"\n}"
+					"raw": "{\n\t\t\"libelle\" : \"\",\n\t\t\"id\" : \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/authenticate/",
-					"protocol": "http",
+					"raw": "localhost:8080/mspr-gostyle-api/api/qrcodes/find",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"mspr-gostyle-api",
 						"api",
-						"authenticate",
-						""
+						"qrcodes",
+						"find"
 					]
 				}
 			},
@@ -328,31 +338,31 @@
 	],
 	"variable": [
 		{
-			"id": "c06cd2a7-0219-40ad-800e-ba341790bd77",
+			"id": "b68f8a01-f959-4024-8b9a-aea6b195119a",
 			"key": "userId",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "fe66ce81-b140-44a5-b20d-62e2729e031c",
+			"id": "ec4940aa-9d87-46d6-9e5c-59516ae8f8ea",
 			"key": "qrCodeId1",
 			"value": "1",
 			"type": "string"
 		},
 		{
-			"id": "c5120c16-b1a4-4d33-91fe-29494d10228b",
+			"id": "d25569eb-aecd-46a6-b6f0-8c8d419b9eb6",
 			"key": "qrCodeId2",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "1ed29da7-c605-41aa-9b8b-01fd53af7f9a",
+			"id": "f2c96f6a-995d-42c4-9125-fe54fc6ed29d",
 			"key": "wrongUser",
 			"value": "160",
 			"type": "string"
 		},
 		{
-			"id": "aaca582a-bb10-4f74-a9d7-d69eb6d4794f",
+			"id": "81f0db73-5783-43d8-8ea5-e924747591b8",
 			"key": "wrongQrCode",
 			"value": "160",
 			"type": "string"

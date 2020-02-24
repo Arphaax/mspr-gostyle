@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import fr.epsi.b3.gostyle.model.Qrcode;
+import fr.epsi.b3.gostyle.dto.QrcodeDto;
 import fr.epsi.b3.gostyle.exception.Erreur;
 import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 import fr.epsi.b3.gostyle.service.QrcodeService;
@@ -35,7 +36,24 @@ public class QrcodeController {
 	public Qrcode getQrcodeByLibelle(@PathVariable String location)throws QrcodeNotFoundException {
 		return qrcodeService.findByLibelle(location);
 	}
-
+	
+	@PostMapping(path="/find" ,produces="application/json",consumes = "application/json")
+	public Qrcode getQrcode(@RequestBody QrcodeDto qrcodedto)throws QrcodeNotFoundException {
+		System.out.println(qrcodedto.getLibelle());
+		System.out.println(qrcodedto.getId());
+		try {
+			if(qrcodedto.getLibelle().isEmpty()) {
+				return qrcodeService.findById(Integer.parseInt(qrcodedto.getId()));
+			}else if(qrcodedto.getId().isEmpty()) {
+				return qrcodeService.findByLibelle(qrcodedto.getLibelle());
+			}else if(!qrcodedto.getId().isEmpty() && !qrcodedto.getLibelle().isEmpty()) {
+				return qrcodeService.findById(Integer.parseInt(qrcodedto.getId()));
+			}
+		}catch(Exception e) {
+			throw new QrcodeNotFoundException("Aucun qrcode ne correspond");
+		}
+		throw new QrcodeNotFoundException("Aucun qrcode ne correspond");
+	}
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Integer> remove(@PathVariable int id) throws QrcodeNotFoundException {
 		qrcodeService.remove(id);
