@@ -40,17 +40,15 @@ public class AuthenticationController {
     @PostMapping(value = "/")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getNumero());
-        authenticate(authenticationRequest.getNumero(), authenticationRequest.getPassword(), userDetails);
+        authenticate(authenticationRequest.getNumero(), authenticationRequest.getPassword());
         HttpHeaders responseHeaders = jwtTokenUtil.getTokenAsHeader(userDetails);
         User user = userService.getByLogin(authenticationRequest.getNumero());
         return ResponseEntity.ok().headers(responseHeaders).body(user);
     }
 
-    private Authentication authenticate(String username, String password, UserDetails userDetails) throws Exception {
+    private Authentication authenticate(String username, String password) throws Exception {
         try {
-
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-
         } catch (DisabledException e) {
 
             throw new Exception("USER_DISABLED", e);
