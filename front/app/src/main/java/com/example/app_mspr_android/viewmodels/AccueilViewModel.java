@@ -78,6 +78,7 @@ public class AccueilViewModel extends BaseObservable {
                         break;
                     case 404:
                         Toast.makeText(view.getContext(), CODE_INNEXISTANT, Toast.LENGTH_SHORT).show();
+                        break;
 
                     default:
                         Toast.makeText(view.getContext(), INTERNAL_ERROR, Toast.LENGTH_SHORT).show();

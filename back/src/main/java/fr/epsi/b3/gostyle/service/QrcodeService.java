@@ -15,8 +15,17 @@ public class QrcodeService {
 	private QrcodeDao qrcodeDao;
 
 	@Transactional
-	public Qrcode find(Integer id) throws QrcodeNotFoundException {
+	public Qrcode findById(Integer id) throws QrcodeNotFoundException {
 		Qrcode qrcode = qrcodeDao.findById(id);
+		if(qrcode == null) {
+			throw new QrcodeNotFoundException("Qrcode not found");
+		}
+		return qrcode;
+	}
+
+	@Transactional
+	public Qrcode findByLibelle(String  id) throws QrcodeNotFoundException {
+		Qrcode qrcode = qrcodeDao.findBylibelle(id);
 		if(qrcode == null) {
 			throw new QrcodeNotFoundException("Qrcode not found");
 		}

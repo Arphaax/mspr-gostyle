@@ -16,21 +16,21 @@ public class QrcodeServiceTest {
 		Qrcode qrcode = new Qrcode();
 		qrcode.setLibelle("test");
 		qrcode.setMontant(15);
-	    Mockito.when(qrcodeService.find(1)).thenReturn(qrcode);
+	    Mockito.when(qrcodeService.findById(1)).thenReturn(qrcode);
 
-		Qrcode result = qrcodeService.find(id);
+		Qrcode result = qrcodeService.findById(id);
 
 		assertEquals(1,result.getID());
-		Mockito.verify(qrcodeService).find(1);
+		Mockito.verify(qrcodeService).findById(1);
 	}
 
 	@Test(expected= QrcodeNotFoundException.class)
 	public void tentativeRecuperationDUnQrcodeQuiNExistePas() throws QrcodeNotFoundException {
 		Integer id = 78;
 		QrcodeService qrcodeService = Mockito.mock(QrcodeService.class);
-	    Mockito.when(qrcodeService.find(78)).thenThrow(QrcodeNotFoundException.class);
+	    Mockito.when(qrcodeService.findById(78)).thenThrow(QrcodeNotFoundException.class);
 
-		Qrcode qrcode = qrcodeService.find(id);
+		Qrcode qrcode = qrcodeService.findById(id);
 
 		fail("QrcodeNotFoundException expected");
 	}

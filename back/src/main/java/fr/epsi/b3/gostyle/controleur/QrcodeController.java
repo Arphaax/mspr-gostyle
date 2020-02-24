@@ -23,8 +23,13 @@ public class QrcodeController {
 		return new Erreur(e);
 	}
 	
-	@GetMapping(path="/{location}", produces="application/json")
-	public Qrcode getQrcode(@PathVariable int location)throws QrcodeNotFoundException {
-		return qrcodeService.find(location);
+	@GetMapping(path="/id/{location}", produces="application/json")
+	public Qrcode getQrcodeById(@PathVariable int location)throws QrcodeNotFoundException {
+		return qrcodeService.findById(location);
+	}
+
+	@GetMapping(path="/label/{location}", produces="application/json")
+	public Qrcode getQrcodeByLibelle(@PathVariable String location)throws QrcodeNotFoundException {
+		return qrcodeService.findByLibelle(location);
 	}
 }
