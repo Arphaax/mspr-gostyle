@@ -11,7 +11,7 @@ CREATE TABLE Utilisateur (
   id     int(10) NOT NULL AUTO_INCREMENT, 
   nom    varchar(255) NOT NULL, 
   prenom varchar(255) NOT NULL, 
-  numero int(10) NOT NULL, 
+  numero varchar(10) NOT NULL, 
   passwd varchar(255) NOT NULL UNIQUE, 
   PRIMARY KEY (id));
 CREATE TABLE Used_code (
