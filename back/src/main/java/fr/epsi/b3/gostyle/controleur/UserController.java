@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -30,6 +31,9 @@ public class UserController {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @ExceptionHandler(UserNotFoundException.class)
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
@@ -69,5 +73,9 @@ public class UserController {
         }
     }
 
-
+    // Route pour générer un mot de passe hashé en Argon2i (seulement pour les tests)
+/*    @PostMapping(path = "/")
+    public ResponseEntity<String> createUser(@RequestBody String password) {
+        return ResponseEntity.ok(passwordEncoder.encode(password));
+    }*/
 }
