@@ -25,7 +25,13 @@ public class QrcodeDao {
 		catch (NoResultException e){
 			throw new QrcodeNotFoundException(e.getMessage());
 		}
+	}
 
+	public void delete(Integer id) {
+
+		em.getTransaction().begin();
+
+		em.getTransaction().commit();
 	}
 
 }

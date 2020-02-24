@@ -1,5 +1,6 @@
 package com.example.app_mspr_android.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import com.example.app_mspr_android.R;
 import com.example.app_mspr_android.databinding.BtnListBinding;
 import com.example.app_mspr_android.model.QrcodeModel;
+import com.example.app_mspr_android.viewmodels.AccueilViewModel;
 import com.example.app_mspr_android.views_activity.DetailsAvtivity;
 
 import java.util.ArrayList;
@@ -43,10 +45,12 @@ public class QrcodeAdapter extends ArrayAdapter<QrcodeModel> {
                 QrcodeModel item = qrcodeModelArrayList.get(position);
                 Intent intent = new Intent(v.getContext(), DetailsAvtivity.class);
                 intent.putExtra("qrCodeInfo", item);
-                v.getContext().startActivity(intent);
+                ((Activity)v.getContext()).startActivityForResult(intent, AccueilViewModel.DETAILS_REQUEST);
+                Context context = v.getContext();
 
             }
         });
+
         return btnListBinding.getRoot();
     }
 

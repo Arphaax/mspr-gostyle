@@ -54,14 +54,19 @@ public class AccueilActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == AccueilViewModel.QRCODE_REQUEST) {
-            if (resultCode == Activity.RESULT_OK) {
-                String info = data.getStringExtra("code");
-                accueilViewModel.GetQrCodeByCode(info);
-
-
-            }
+        switch (requestCode){
+            case AccueilViewModel.QRCODE_REQUEST:
+                if (resultCode == Activity.RESULT_OK) {
+                    String info = data.getStringExtra("code");
+                    accueilViewModel.GetQrCodeByCode(info);
+                }
+                break;
+            case AccueilViewModel.DETAILS_REQUEST:
+                if(resultCode == Activity.RESULT_OK){
+                    accueilViewModel.GetAllQrCode();
+                }
         }
+
     }
 
 

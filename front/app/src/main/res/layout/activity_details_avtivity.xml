@@ -88,6 +88,7 @@
             android:layout_marginBottom="100dp"
             android:background="@drawable/button_color"
             android:text="supprimer bon"
+            android:onClick="@{ ()-> detailsvm.deleteQrCode() }"
             android:textColor="#FA070707"
             android:textSize="15sp"></Button>
 

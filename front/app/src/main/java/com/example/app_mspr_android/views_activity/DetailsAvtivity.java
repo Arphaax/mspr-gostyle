@@ -17,7 +17,7 @@ public class DetailsAvtivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         QrcodeModel qrcodeModel = (QrcodeModel) getIntent().getSerializableExtra("qrCodeInfo");
         ActivityDetailsAvtivityBinding activityDetailsAvtivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_details_avtivity);
-        activityDetailsAvtivityBinding.setDetailsvm(new DetailsViewModel(qrcodeModel));
+        activityDetailsAvtivityBinding.setDetailsvm(new DetailsViewModel(qrcodeModel,activityDetailsAvtivityBinding.getRoot()));
         activityDetailsAvtivityBinding.executePendingBindings();
 
     }

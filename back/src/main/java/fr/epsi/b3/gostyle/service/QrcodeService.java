@@ -32,4 +32,10 @@ public class QrcodeService {
 		return qrcode;
 	}
 
+	@Transactional
+	public void remove(int  id) throws QrcodeNotFoundException {
+		qrcodeDao.delete(id);
+
+	}
+
 }

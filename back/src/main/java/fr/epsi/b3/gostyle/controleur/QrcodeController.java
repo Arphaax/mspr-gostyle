@@ -2,6 +2,7 @@ package fr.epsi.b3.gostyle.controleur;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,8 @@ import fr.epsi.b3.gostyle.model.Qrcode;
 import fr.epsi.b3.gostyle.exception.Erreur;
 import fr.epsi.b3.gostyle.exception.QrcodeNotFoundException;
 import fr.epsi.b3.gostyle.service.QrcodeService;
+
+import java.net.http.HttpResponse;
 
 @RestController
 @RequestMapping(value = "/api/qrcodes", produces = "application/hal+json", consumes = "application/json")
@@ -31,5 +34,13 @@ public class QrcodeController {
 	@GetMapping(path="/label/{location}", produces="application/json")
 	public Qrcode getQrcodeByLibelle(@PathVariable String location)throws QrcodeNotFoundException {
 		return qrcodeService.findByLibelle(location);
+	}
+
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<Integer> remove(@PathVariable int id) throws QrcodeNotFoundException {
+		qrcodeService.remove(id);
+
+		return new ResponseEntity<>(id, HttpStatus.OK);
+
 	}
 }

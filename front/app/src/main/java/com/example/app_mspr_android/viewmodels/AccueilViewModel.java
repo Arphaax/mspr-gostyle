@@ -28,6 +28,7 @@ public class AccueilViewModel extends BaseObservable {
     private static final String INTERNAL_ERROR = "Une erreur interne est survenue";
     private static final String CODE_INNEXISTANT = "Ce code n'existe pas";
     public static final int QRCODE_REQUEST = 1;
+    public static final int DETAILS_REQUEST = 2;
 
 
     public MutableLiveData<ArrayList<QrcodeModel>> mutableLiveData;
@@ -96,7 +97,7 @@ public class AccueilViewModel extends BaseObservable {
     }
 
 
-    private void GetAllQrCode() {
+    public void GetAllQrCode() {
 
 
         qrcodeRepository.getAllQrCode(userModel.getId()).enqueue((new Callback<ArrayList<QrcodeModel>>() {
