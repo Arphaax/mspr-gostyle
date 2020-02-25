@@ -13,6 +13,7 @@ import com.example.app_mspr_android.Repository.QrcodeRepository;
 import com.example.app_mspr_android.model.AccueilModel;
 import com.example.app_mspr_android.model.QrcodeModel;
 import com.example.app_mspr_android.model.UserModel;
+import com.example.app_mspr_android.model.qrcodeLabel;
 import com.example.app_mspr_android.views_activity.ActivityQRCode;
 import com.example.app_mspr_android.views_activity.LoginActivity;
 
@@ -69,8 +70,11 @@ public class AccueilViewModel extends BaseObservable {
 
 
     public void GetQrCodeByCode(String id) {
+        qrcodeLabel qrcodeLabel = new qrcodeLabel();
+        qrcodeLabel.setLibelle(id);
+        qrcodeLabel.setId("");
 
-        qrcodeRepository.getQrCodeByLabel(id).enqueue((new Callback<QrcodeModel>() {
+        qrcodeRepository.getQrCodeByLabel(qrcodeLabel).enqueue((new Callback<QrcodeModel>() {
             @Override
             public void onResponse(Call<QrcodeModel> call, Response<QrcodeModel> response) {
 
@@ -100,7 +104,7 @@ public class AccueilViewModel extends BaseObservable {
 
     public boolean checkIfExistInQrCodeList(QrcodeModel qrcodeModel){
         for (Object o : accueilModel.getQrcodeModelList()) {
-            // use utility function from java.util to deal with nulls
+
             if (Objects.equals(o, qrcodeModel)) {
                 return true;
 

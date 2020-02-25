@@ -2,6 +2,7 @@ package com.example.app_mspr_android.Interface;
 
 import com.example.app_mspr_android.model.QrcodeModel;
 import com.example.app_mspr_android.model.UserModel;
+import com.example.app_mspr_android.model.qrcodeLabel;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,8 @@ public interface APIInterface {
     Call<ArrayList<QrcodeModel>> getAllQrcode(@Path("id") int id);
 
     @Headers("Content-Type: application/json")
-    @GET("/api/qrcodes/label/{location}")
-    Call<QrcodeModel> getQrcodeByLabel(@Path("location") String location);
+    @POST("/api/qrcodes/find")
+    Call<QrcodeModel> getQrcodeByLabel(@Body qrcodeLabel qrcodeLabel);
 
     @Headers("Content-Type: application/json")
     @DELETE("/api/qrcodes/{id}")

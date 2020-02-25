@@ -2,6 +2,7 @@ package com.example.app_mspr_android.Repository;
 
 import com.example.app_mspr_android.Interface.IAPIService;
 import com.example.app_mspr_android.model.QrcodeModel;
+import com.example.app_mspr_android.model.qrcodeLabel;
 
 import java.util.ArrayList;
 
@@ -14,8 +15,8 @@ public class QrcodeRepository implements IAPIService {
         return apiInterface.getAllQrcode(id);
     }
 
-    public Call<QrcodeModel> getQrCodeByLabel(String id) {
-        return apiInterface.getQrcodeByLabel(id);
+    public Call<QrcodeModel> getQrCodeByLabel(qrcodeLabel label) {
+        return apiInterface.getQrcodeByLabel(label);
     }
 
     public Call<ResponseBody> deleteByID(int id) {

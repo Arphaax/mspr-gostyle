@@ -73,24 +73,12 @@
                 android:layout_marginLeft="27dp"
                 android:background="@drawable/description_label"
                 android:gravity="center"
-                android:text="test"
+                android:text='@{"Libelle :" +detailsvm.qrcodeModel.libelle +"\n"+ "Montant :"+detailsvm.qrcodeModel.montant}'
                 android:textColor="#000"
                 android:textSize="17dp" />
-        </LinearLayout>
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="108dp"
-            android:layout_marginBottom="100dp"
-            android:background="@drawable/button_color"
-            android:text="supprimer bon"
-            android:onClick="@{ ()-> detailsvm.deleteQrCode() }"
-            android:textColor="#FA070707"
-            android:textSize="15sp"></Button>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
