@@ -1,11 +1,14 @@
 package com.example.app_mspr_android.views_activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.zxing.Result;
 
@@ -20,7 +23,7 @@ public class ActivityQRCode extends AppCompatActivity implements ZXingScannerVie
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-
+        VerifyPermission();
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
         setContentView(mScannerView);                // Set the scanner view as the content view
     }
@@ -51,6 +54,14 @@ public class ActivityQRCode extends AppCompatActivity implements ZXingScannerVie
 
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
+    }
+
+    private void VerifyPermission(){
+        int permissionWriteExternalStorage = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+
+        if(permissionWriteExternalStorage != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, 1);
+        }
     }
 
 

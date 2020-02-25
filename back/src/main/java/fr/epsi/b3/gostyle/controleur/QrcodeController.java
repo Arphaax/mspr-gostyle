@@ -39,12 +39,11 @@ public class QrcodeController {
 	
 	@PostMapping(path="/find" ,produces="application/json",consumes = "application/json")
 	public Qrcode getQrcode(@RequestBody QrcodeDto qrcodedto)throws QrcodeNotFoundException {
-		System.out.println(qrcodedto.getLibelle());
-		System.out.println(qrcodedto.getId());
+
 		try {
-			if(qrcodedto.getLibelle().isEmpty()) {
+			if(qrcodedto.getLibelle().isEmpty() || qrcodedto.getLibelle() == null) {
 				return qrcodeService.findById(Integer.parseInt(qrcodedto.getId()));
-			}else if(qrcodedto.getId().isEmpty()) {
+			}else if(qrcodedto.getId().isEmpty() || qrcodedto.getId() == null) {
 				return qrcodeService.findByLibelle(qrcodedto.getLibelle());
 			}else if(!qrcodedto.getId().isEmpty() && !qrcodedto.getLibelle().isEmpty()) {
 				return qrcodeService.findById(Integer.parseInt(qrcodedto.getId()));
