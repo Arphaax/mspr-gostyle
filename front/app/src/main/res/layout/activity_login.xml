@@ -51,7 +51,7 @@
                 android:layout_width="72dp"
                 android:layout_height="24dp"
                 android:layout_marginLeft="50dp"
-                android:text="Email"
+                android:text="Numero"
                 android:textColor="#FA070707"
                 android:textSize="18sp" />
 
@@ -84,7 +84,7 @@
                 android:layout_height="24dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="10dp"
-                android:text="Password"
+                android:text="Mot de passe"
                 android:textColor="#FA070707"
                 android:textSize="18sp" />
 
@@ -99,8 +99,8 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edit_text"
                 android:ems="10"
+                android:inputType="textPassword"
                 android:gravity="center"
-                android:inputType="textPersonName"
                 android:padding="10dp"
                 android:text="@={userViewModel.userPassword}" />
         </LinearLayout>
