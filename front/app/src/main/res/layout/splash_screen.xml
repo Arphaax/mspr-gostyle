@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6983F28E">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text="GoStyle"
+            android:textSize="30dp"/>
+
+        <ImageView
+            android:layout_marginTop="100dp"
+            android:id="@+id/imageView"
+            android:layout_width="128dp"
+            android:layout_height="103dp"
+            android:src="@drawable/epsiLogo" />
+    </LinearLayout>
+</RelativeLayout>
