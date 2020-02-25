@@ -46,7 +46,7 @@ public class QrcodeAdapter extends ArrayAdapter<QrcodeModel> {
                 Intent intent = new Intent(v.getContext(), DetailsAvtivity.class);
                 intent.putExtra("qrCodeInfo", item);
                 ((Activity)v.getContext()).startActivityForResult(intent, AccueilViewModel.DETAILS_REQUEST);
-                Context context = v.getContext();
+
 
             }
         });
