@@ -17,6 +17,7 @@ import com.example.app_mspr_android.views_activity.ActivityQRCode;
 import com.example.app_mspr_android.views_activity.LoginActivity;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +28,7 @@ public class AccueilViewModel extends BaseObservable {
 
     private static final String INTERNAL_ERROR = "Une erreur interne est survenue";
     private static final String CODE_INNEXISTANT = "Ce code n'existe pas";
+    private static final String CODE_ALREADY_EXIST = "Ce code existe déja";
     public static final int QRCODE_REQUEST = 1;
     public static final int DETAILS_REQUEST = 2;
 
@@ -74,8 +76,8 @@ public class AccueilViewModel extends BaseObservable {
 
                 switch (response.code()) {
                     case 200:
-                        accueilModel.getQrcodeModelList().add(response.body());
-                        mutableLiveData.setValue(getListQrCode());
+
+                            addQrcodeIfNotExist(response.body());
                         break;
                     case 404:
                         Toast.makeText(view.getContext(), CODE_INNEXISTANT, Toast.LENGTH_SHORT).show();
@@ -94,6 +96,31 @@ public class AccueilViewModel extends BaseObservable {
             }
         }));
 
+    }
+
+    public boolean checkIfExistInQrCodeList(QrcodeModel qrcodeModel){
+        for (Object o : accueilModel.getQrcodeModelList()) {
+            // use utility function from java.util to deal with nulls
+            if (Objects.equals(o, qrcodeModel)) {
+                return true;
+
+            }
+        }
+        return false;
+
+
+    }
+
+    public void addQrcodeIfNotExist(QrcodeModel qrcodeModel){
+        boolean test = checkIfExistInQrCodeList(qrcodeModel);
+        if(checkIfExistInQrCodeList(qrcodeModel)){
+            Toast.makeText(view.getContext(), CODE_ALREADY_EXIST, Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            accueilModel.getQrcodeModelList().add(qrcodeModel);
+            mutableLiveData.setValue(getListQrCode());
+        }
     }
 
 

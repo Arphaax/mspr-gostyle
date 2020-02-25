@@ -5,6 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class QrcodeModel implements Serializable {
 
@@ -51,5 +52,21 @@ public class QrcodeModel implements Serializable {
 
     public int setId() {
         return id;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof QrcodeModel)) return false;
+        QrcodeModel that = (QrcodeModel) o;
+        return getId() == that.getId() &&
+                getMontant() == that.getMontant() &&
+                Objects.equals(getLibelle(), that.getLibelle());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getLibelle(), getMontant());
     }
 }

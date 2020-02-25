@@ -17,7 +17,7 @@ import retrofit2.http.Path;
 public interface APIInterface {
 
 
-    @POST("api/authenticate/")
+    @POST("/api/authenticate/")
     Call<UserModel> authenticate(@Body UserModel userModel);
 
     @Headers("Content-Type: application/json")

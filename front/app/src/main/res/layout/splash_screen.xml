@@ -25,6 +25,6 @@
             android:id="@+id/imageView"
             android:layout_width="128dp"
             android:layout_height="103dp"
-            android:src="@drawable/epsiLogo" />
+            android:src="@drawable/epsilogo" />
     </LinearLayout>
 </RelativeLayout>
