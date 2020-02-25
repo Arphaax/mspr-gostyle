@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app_mspr_android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 
-    <meta-data
-        android:name="com.google.android.gms.vision.DEPENDENCIES"
-        android:value="barcode" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views_activity.DetailsAvtivity"></activity>
+        <activity android:name=".views_activity.DetailsAvtivity"/>
         <activity android:name=".views_activity.AccueilActivity" />
         <activity android:name=".views_activity.ActivityQRCode" />
-        <activity android:name=".views_activity.LoginActivity">
+        <activity android:name=".views_activity.LoginActivity"/>
+        <activity android:name=".views_activity.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,10 +31,6 @@
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
 </manifest>
